@@ -1,7 +1,6 @@
 ---
 - name: Playbook to ping specific hosts
   hosts: rocky
-  Become: true
   tasks:
     - name: Ping 192.168.122.58
       ansible.builtin.ping:
