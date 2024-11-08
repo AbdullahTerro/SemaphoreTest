@@ -1,11 +1,22 @@
 ---
-- name: Playbook to ping specific hosts
+- name: Update and upgrade packages on Rocky Linux server
   hosts: rocky
-  tasks:
-    - name: Ping 192.168.122.58
-      ansible.builtin.ping:
-        host: 192.168.122.58
+  become: true  # Ensures tasks are run with elevated privileges (root)
 
-    - name: Ping Google (8.8.8.8)
-      ansible.builtin.ping:
-        host: 8.8.8.8
+  tasks:
+    - name: Update all packages with yum
+      ansible.builtin.yum:
+        name: '*'
+        state: latest
+      when: ansible_pkg_mgr == 'yum'
+
+    - name: Upgrade all packages with yum, excluding the kernel
+      ansible.builtin.yum:
+        name: '*'
+        state: latest
+        exclude: kernel*
+      when: ansible_pkg_mgr == 'yum'
+
+    - name: Display success message
+      ansible.builtin.debug:
+        msg: "You did it!"
