@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  fogproject:
+    image: redvex2460/fogproject:latest
+    container_name: fogproject
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - FOG_DB_PASSWORD=dbpassword
+      - FOG_USER_PASSWORD=userpassword
+      - FOG_SERVER_HOSTNAME=fogserver.local
+      - FOG_SERVER_IP=192.168.1.10
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - fog_data:/var/www/html
+      - fog_db:/var/lib/mysql
+    networks:
+      - host 
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    container_name: fog_mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+    volumes:
+      - fog_db:/var/lib/mysql
+    networks:
+      - host
+    restart: always
+
+volumes:
+  fog_data:
+  fog_db:
+
+networks:
+  host:
+    driver: bridge
