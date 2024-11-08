@@ -4,29 +4,6 @@
   become: true
   tasks:
 
-    # Step 1: Update all packages
-    - name: Update all packages
-      dnf:
-        name: "*"
-        state: latest
-
-    # Step 2: Install dependencies (Docker and Docker-compose)
-    - name: Install Docker
-      dnf:
-        name: docker
-        state: present
-
-    - name: Ensure Docker is running
-      systemd:
-        name: docker
-        state: started
-        enabled: yes
-
-    - name: Install docker-compose
-      dnf:
-        name: docker-compose
-        state: present
-
     # Step 3: Pull the Fog Project Docker image
     - name: Pull Fog Project Docker image
       docker_image:
