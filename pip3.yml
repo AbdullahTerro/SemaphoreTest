@@ -1,0 +1,22 @@
+---
+- name: Install pip3 on a Linux system
+  hosts: all
+  become: true
+  tasks:
+
+    - name: Ensure Python 3 is installed
+      dnf:
+        name: python3
+        state: present
+
+    - name: Install pip3 using get-pip.py (if not installed)
+      shell: |
+        python3 -m ensurepip --upgrade
+      args:
+        creates: /usr/local/bin/pip3
+
+    - name: Upgrade pip3 to the latest version
+      pip:
+        name: pip
+        state: latest
+        executable: pip3
