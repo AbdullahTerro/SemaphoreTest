@@ -10,6 +10,7 @@
           - yum-utils
           - device-mapper-persistent-data
           - lvm2
+          - libcgroup  # Install libcgroup to resolve the missing dependency
         state: present
 
     - name: Add Docker repository
