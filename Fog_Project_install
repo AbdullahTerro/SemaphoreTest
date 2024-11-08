@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  fogproject:
+    image: redvex2460/fogproject:latest
+    container_name: fogproject
+    network_mode: host  # Allows container to use host networking for PXE/DHCP
+    restart: unless-stopped
+    volumes:
+      - /fog/data:/var/www/html/fog/data  # Adjust path as necessary for your data persistence needs
+    environment:
+      - TZ=Etc/UTC  # Optionally set timezone, change as needed (e.g., TZ=America/New_York)
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
