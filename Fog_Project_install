@@ -8,7 +8,7 @@ services:
     volumes:
       - /fog/data:/var/www/html/fog/data  # Adjust path as necessary for your data persistence needs
     environment:
-      - TZ=Etc/UTC  # Optionally set timezone, change as needed (e.g., TZ=America/New_York)
+      - TZ=Europe/Berlin  # Set timezone to Berlin
     logging:
       options:
         max-size: "10m"
