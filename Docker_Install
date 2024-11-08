@@ -10,7 +10,6 @@
           - yum-utils
           - device-mapper-persistent-data
           - lvm2
-          - libcgroup  # Install libcgroup to resolve the missing dependency
           - curl
           - python3
           - python3-pip
