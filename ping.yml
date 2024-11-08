@@ -1,0 +1,12 @@
+---
+- name: Playbook to ping specific hosts
+  hosts: Myservers
+  Become: true
+  tasks:
+    - name: Ping 192.168.122.58
+      ansible.builtin.ping:
+        host: 192.168.122.58
+
+    - name: Ping Google (8.8.8.8)
+      ansible.builtin.ping:
+        host: 8.8.8.8
