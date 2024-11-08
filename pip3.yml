@@ -1,6 +1,6 @@
 ---
 - name: Install pip3 on a Linux system
-  hosts: all
+  hosts: rocky
   become: true
   tasks:
 
