@@ -1,6 +1,6 @@
 ---
 - name: Install Fog Project on Rocky Linux using Docker
-  hosts: rocky_server
+  hosts: rocky
   become: true
   tasks:
 
